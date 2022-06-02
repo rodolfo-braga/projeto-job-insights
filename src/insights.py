@@ -203,4 +203,11 @@ def filter_by_salary_range(jobs, salary):
     list
         Jobs whose salary range contains `salary`
     """
-    return []
+
+    return [
+        job for job in jobs if (
+            job["max_salary"] > job["min_salary"]
+            and isinstance(salary, int)
+            and salary >= 0
+            and matches_salary_range(job, salary)
+        )]
